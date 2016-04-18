@@ -22,6 +22,10 @@ These can be found inside the __code_conventions__ folder.
 
 When contributing to other OpenSource projects, those coding guidelines must be followed.
 
+## Basic Language
+*** NEW *** - color / colour; favourite / favorite ?
+With EN-US being more compact and likely more widely used over EN-GB, the preference is to use EN-US as the base.
+
 ## Commenting
 There are 4 kinds of comments that can be used.
 * Commenting for documentation purposes (see Doxygen Commenting in different document)
