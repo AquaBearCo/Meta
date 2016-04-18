@@ -4,23 +4,25 @@ TODO
 - JavaScript
 - CSS
 
-Code Conventions
-=======
+# Code Conventions
 This document describes the code conventions and guidelines to be followed in all Ultimaker code, regardless the programming environment.
-
-In certain cases specific rules might apply depening on the programming languaged used, but in general all the conventions would apply all programming and/or scripting languages.
 
 Do note that not all the code convention described here have been fully implemented yet. However, any newly committed code should follow the conventions below.
 
+Also familiarise yourself with the following guidelines for examples and ideas and so on and so forth:
+| Language | Guidelines | Link |
+| :---: | :--- | :---
+| Python | PEP8 | https://www.python.org/dev/peps/pep-0008/ |
+| PHP | PSR-2 | http://www.php-fig.org/psr/psr-2/ |
+| C++ | Best Practices | https://www.gitbook.com/book/lefticus/cpp-best-practices/details |
 
-Also check with PEP8 (https://www.python.org/dev/peps/pep-0008/) for Python and and Psr-2 (http://www.php-fig.org/psr/psr-2/) for PHP, C++ Best Practices on GitBook  (https://www.gitbook.com/book/lefticus/cpp-best-practices/details) for examples and ideas and so on and so forth.
-
-These should be followed unless overruled in this document.
+These should be followed unless overruled in this document or the specific guidelines set for each language.
+In certain cases specific rules might apply depening on the programming languaged used, but in general all the conventions would apply all programming and/or scripting languages.
+These can be found inside the __code_conventions__ folder.
 
 When contributing to other OpenSource projects, those coding guidelines must be followed.
 
-Commenting
------
+## Commenting
 There are 4 kinds of comments that can be used.
 * Commenting for documentation purposes (see Doxygen Commenting in different document)
 * Comments to make clear something needs to be examined and possibly be refactored (referring to a Jira issue/story)
@@ -29,9 +31,8 @@ There are 4 kinds of comments that can be used.
 
 Comments in general never should state the obvious. If that's the case, rethink the strategy and solution.
 
-Logging
-----
-Logging should be done on a few levels: 
+## Logging
+Logging should be done on a few levels:
 * DEBUG: Verbose logging -> logging data that is useful to debug parts of the code being run
 * INFO: Logging -> logging information that can be seen as feedback to a user on his/her actions (acties gebruiker en acties systeem)
 * WARN: Warning message are an indication to the user that something is not entirely right, but might not yet be a big issue
@@ -46,24 +47,15 @@ python logging
 [easylogging++ (boost)]
 compile time log level?
 
-Indenting / trailing whitespaces
------
+## Indenting / trailing whitespaces
 * Never use TABs
 * Indenting is allways 4 spaces
 * No trailing whitespaces
 
 Make sure that all editors used enforce these settings for the lines edited  changed (untouched code stays the same, unless a complete refactoring is going to happen)
 
-Localization *** TODO: Tamara ***
-----
-I8N strings?
-embedded gelijk aan uranium
-context marker + vertaling
-use named arguments - this will help in the long run!
-examples
+## Codeblocks (not Code::Blocks :))
 
-Codeblocks (not Code::Blocks :))
------
 * Allways use a codeblock if possible and allowed in the language construction
 * Codeblocks allways start on a new line
 * The opening and closing codeblock delimiters should always be on a separate line on the same indentation level as the keywords (e.g. `if`, `while`, `else`).
@@ -77,6 +69,7 @@ if (condition)
 { cout << "Do nothing" << EOL; 
 } else cout << "Hahaha" << EOL;
 ~~~~~~~~~~~~~~~
+
 Good code
 ~~~~~~~~~~~~~~~{.cpp}
 if (condition)
@@ -90,16 +83,14 @@ else // else on new line
 }
 ~~~~~~~~~~~~~~~
 
-Naming conventions
-------
- * variables: lower_case_with_underscores
- * functions: lowerCamelCase
- * classes: UpperCamelCase
- * macros/constants: UPPER_CASE_WITH_UNDERSCORES
+## Naming conventions
+| Type | Description | Example |
+| Variables | starts with lowercase, words seperated with underscore | this_is_a_variable_name |
+| Function | starts with lowercase and uppercase for each word | thisIsAFunctionName |
+| Classes | starts with uppercase and uppercase for each word | | ThisIsAClassName |
+| Macros / constants | all uppercase characters, words seperated with underscore | THIS_IS_A_CONSTANT |
 
 Function names should start with a verb (e.g. get, set, run, execute, validate etc.) or a question (e.g. is, has, can) as this helps a lot with understanding what the implementation is about.
-
-QML uitzondering -> eigen stijl
 
 Example:
 ~~~~~~~~~~~~~~~{.cpp}
@@ -118,26 +109,11 @@ public:
 };
 ~~~~~~~~~~~~~~~
 
-Enums (C/C++)
-----
-Always use enum classes; never plain enums. Use UpperCamelCase for enum names and UPPER_CASE for the values.
-
-Example:
-~~~~~~~~~~~~~~~{.cpp}
-enum class EnumExample 
-{
-    ELEM0 = 0,
-    ELEM1 = 1
-};
-
-EnumExample var = EnumExample::ELEM0; // call enum value via the scope of the enum class
-~~~~~~~~~~~~~~~
 
 enum moeten const regels volgen
 
 
-Spacing
-----
+## Spacing
 Example:
 ~~~~~~~~~~~~~~~{.cpp}
 for (int i = 0; i < len; i++)
@@ -157,111 +133,54 @@ for (int i = 0; i < len; i++)
  * When calling the index `[]` operator, don't insert a space before the `[`.
 
 
-Header files (C/C++)
---------
-Example for a file CuraEngine/src/folder/SomeClass.h (UpperCamelCase):
-~~~~~~~~~~~~~~~{.cpp}
-#ifndef (FOLDER_SOME_CLASS_H)
-#define FOLDER_SOME_CLASS_H
-
-...
-
-#endif //FOLDER_SOME_CLASS_H
-~~~~~~~~~~~~~~~
-Each header file must include a header guard as shown above. The defined macro is adopted from the path and name of the class and must follow the rules for macros (UPPER_CASE).
-Here the folder `src` is skipped, because all header and implementation files of CuraEngine are in `src`.
-
-Null pointer (C++)
-----
-For C++, never use `NULL`, but use `nullptr` instead. NULL is an integer, not a pointer.
-
-Ordering
+## Ordering
 ----
 * Members: Implement functions Top-Down, starting with constructors/deconstructors in case of classes. That way, a class implementation can be read as a page from a book: from top to bottom providing clarity. This can be an issue for declarative language constructs like C/C++ , but then it's good practice to use forward declarations.
 * Go from public, protected to private. Reasoning behind this is similar. When using a class, one is more interested in the public items. For inheriting the protected ones can be interesting, while the private parts should only be meaningfull to the maintainer of the class. This helps with the OOP paradigm of implementation hiding.
 
-Strings
+## Strings
 ----
 Strings are double quotes. While python and php allow single and double quoted strings, and PEP8 only says "pick a rule and stick to it". We decided to do double quotes to match C++.
 
-Lines and Linelength *** Changed / New ***
-----
+## Lines and Linelength
+*** Changed / New ***
 * "Maximum line length" - There is no hard limit on the line length, but as a thumb of rule, try to keep it to at most 120 characters. This helps doing the code reviews!
 * A single line contains only one statement
 
-Alignment *** New ***
-----
+## Alignment
+*** New ***
 Align code for better readability.
 This can be done on assignment level, parameter passing on function, array definitions and so on. 
 
+# Code Guidelines
+Below are a couple of guidelines which should be followed, unless there's good reason not to. Most of these are her from an architectural point of view.
 
-Code Guidelines
-====
-Below are a couple of guidelines which should be followed, unless there's good reason not to.
-
-Implementation (C/C++)
-----
-All implementations should be in .cpp files. An exception is template functions, which must be implemented in the header file.
-
-Sometimes including the implementation in the header file can make it easier for the compiler to inline functions.
-
-Class Files *** Changed ***
-----
+## Class Files
+*** Changed ***
 Each class would have its own file with a filename corrseponding to the class name.
-Hence a class named Printer would have a printer.h + printer.cpp for C/C++, a printer.py for Python and a printer.php for PHP
+Hence a class named Printer would have a printer.h(pp) + printer.cpp for C/C++, a printer.py for Python and a printer.php for PHP
 
-Namespaces *** New ***
-----
+## Namespaces
+*** New ***
 [ TO BE DISCUSSED ]
 
-Const vs Non-const (C/C++) *** New ***
-----
-The best practice is to use const when and wherever possible. This is for both arguments declared in functions as well as the return values of the functions and the functions themselves (when they don't change the internal state of the object).
-In the long run this will make the code, libraries and runtime more stable and robust.
-In the short run this might cause some friction with (older) code that does not use this concept (yet).
-
-Pointers vs. References used as return values in argument list *** Changed/New ***
------
-[ TO BE DISCUSSED ]
-In the end this was not as much a discussion as to use pointer or references, but what to use when using arguments to return values.
-
-This has a bigger impact on documentation part of Doxygen: if arguments are allowed to be used to return values, then for all arguments everywhere, using doxygen commenting, [in] and [out] tags must be put in the comments describing the arguments.
-
-Functions *** New ***
-----
+## Functions
+*** New ***
 * Functions should return only 1 value (the return value)
 * If a function needs to return more, the returnvalue could be a dictionary/hashtable construction
-* The number of arguments to a function (especially when it's a member of a class) should not exceed 5. 
+* The number of arguments to a function (especially when it's a member of a class) should not exceed 5, or use a varargs construction.
 * Functions should not contain more then 7-10 (?) lines of code. The pro is that functions have a more contained implementation leading to robust, testable, readable, less error-prone implementation. The con is that it will cause a bit more overhead (runtime calls) and documentation (for more functions)
 
-Principles *** New ***
-----
+## Basic principles
+*** New ***
 Adhere to the following coding principles
 * DRY instead of WET: Don't Repeat Yourself / (Write Everyting Twice, We Enjoy Typing)
 * KISS: Keep It Simple, Stupid
 * GRASP: General Responsibility Assignment Software Patterns
 * SOLID: Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion (segregration of concern ^ 2)
 
-Documentation
-====
-[ TODO ]
-We use [Doxygen](www.doxygen.org/) to generate documentation. Try to keep your documentation in doxygen style.
+# Localization
+For localization see the __Localization.md__ document on how to provide ways to translate the interface.
 
-Doxygen documentation should always be next to the declaration of the thing documented - in the header file.
-
-Here's a small example:
-~~~~~~~~~~~~~~~{.cpp}
-/*!
- * Doxygen style comments!
- *
- * \param param1 explanation may refer to another \p param2
- * \param param2 each parameter should be explained
- * \return explanation of what is returned
- */
-int function(int param1, int param2)
-{
-    // non-doxygen style comments on implementation details
-}
-
-int member; //!< inline doxygen comment on the entry to the left
-~~~~~~~~~~~~~~~
+# Documenting
+See the __Doygen__ documentation on how to use this to document the code.
